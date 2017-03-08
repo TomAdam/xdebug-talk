@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: true
+  roles:
+  - base
+  - dotdeb
+  - nginx
+  - php7-fpm
+  post_tasks:
+  - name: restart sshd
+    service: name=ssh state=restarted enabled=yes
+    when: sshd_status.changed

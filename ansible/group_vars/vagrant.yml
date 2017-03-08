@@ -1,0 +1,26 @@
+---
+vagrant: true
+nginx_user: vagrant
+app_user: vagrant
+
+php_fpm_pools:
+-   src: vagrant/xdebug.conf.j2
+    dest: xdebug.conf
+nginx_vhosts:
+-   src: vagrant/xdebug.j2
+    dest: xdebug
+
+php_fpm_settings:
+-   { section: xdebug, option: xdebug.remote_enable, value: 'on' }
+-   { section: xdebug, option: xdebug.remote_connect_back, value: 'on' }
+-   { section: xdebug, option: xdebug.max_nesting_level, value: 250 }
+
+php_cli_settings:
+-   { section: xdebug, option: xdebug.remote_enable, value: 'on' }
+-   { section: xdebug, option: xdebug.remote_host, value: 192.168.42.1 }
+-   { section: xdebug, option: xdebug.remote_autostart, value: 'on' }
+-   { section: xdebug, option: xdebug.idekey, value: default }
+-   { section: xdebug, option: xdebug.max_nesting_level, value: 250 }
+
+php_packages:
+-   php7.0-xdebug

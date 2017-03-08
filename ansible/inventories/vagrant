@@ -1,0 +1,2 @@
+[vagrant]
+xdebug.dev ansible_ssh_host=192.168.42.222
